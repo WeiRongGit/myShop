@@ -35,21 +35,21 @@
             <table class="table_a" border="1" width="100%">
                 <tbody><tr style="font-weight: bold;">
                          <th>ID:</th>
-                         <th>内容:</th>
-                         <th>时间:</th>
+                         <th>名字:</th>
+                         <th>价格:</th>
                          <th>图片:</th>
-                         <th>状态:</th>
-                         <th>连接</th>
+                         <th>重量:</th>
+                         <th>描述</th>
                         <td align="center">操作</td>
                     </tr>
-                    <foreach name="news" item="new">
+                    <foreach name="goods" item="good">
                      <tr>
-                       <td>{$new.id}</td>
-                       <td>{$new.content}</td>
-                       <td>{$new.addtime}</td>
-                       <td>{$new.img}</td>
-                       <td>{$new.state}</td>
-                       <td>{$new.link}</td>
+                       <td>{$good.goods_id}</td>
+                       <td>{$good.goods_name}</td>
+                       <td>{$good.goods_price}</td>
+                       <td>{$good.img}</td>
+                       <td>{$good.goods_weight}</td>
+                       <td>{$good.goods_introduce}</td>
                        <td>
                         <a href="">删除</a>
                         <a href="__URL__/edit/id/{$new.id}">修改</a></td>

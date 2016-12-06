@@ -1,10 +1,11 @@
 <?php
 return array(
-	//'配置项'=>'配置值'
+//	//'配置项'=>'配置值'
     TMPL_PARSE_STRING  => array(
         '__CSS__' =>  '/Public/Admin/style' ,   //  更改默认的 __css__ 替换规则
         '__JS__' =>  '/Public/Admin/js' ,   //  更改默认的 __css__ 替换规则
         '__IMAGES__' => "/Public/Admin/img",
+        '__UEDITOR__'=>  "/Plugin/ueditor",
     ),
     'DB_TYPE'               =>  'mysql',     // 数据库类型
     'DB_HOST'               =>  'localhost', // 服务器地址
