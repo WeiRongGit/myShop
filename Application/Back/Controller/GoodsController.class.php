@@ -21,7 +21,9 @@ class GoodsController extends Controller
     }
     function add(){//添加商品和展示商品都在同一个操作里面 这样的好处是减少操作的数量
 
-        $model = D('goods');
+//        $model = D('Goods'); 先查找有没有自定义的模型，如果没有侧实例化默认模型
+        $model = new Model\GoodsModel();
+
         //判断是否有信息post过来，如果有信息请求过来,那么就进行插入数据库 否则回退上一步
         if( IS_POST ){
         $goodData = $model->create();
