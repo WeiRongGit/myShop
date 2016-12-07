@@ -13,10 +13,17 @@ class GoodsController extends Controller
 {
     function showList(){
         $model = D('Goods');
-        $GoodsData =  $model->select();
 
+        $count = $model->count ();//统计这么表里面的记录数
+ 		$Page = new \Think\Page ( $count, 3 );//实例化分页对象
+
+
+        $GoodsData =  $model->limit( $Page->firstRow.",".$Page->listRows)->select();
+
+        $Page->setConfig('next','下一页');
+        $show = $Page->show();
         $this->goods = $GoodsData;
-
+        $this->pshow = $show;
         $this->display();
     }
     function add(){//添加商品和展示商品都在同一个操作里面 这样的好处是减少操作的数量
@@ -50,7 +57,30 @@ class GoodsController extends Controller
         $this->display();
     }
     function update(){
-        $this->display();
+
+        //点击进来加载资料
+        if (!empty( I( "post.goods_id" ) )){
+            $goodModle = D(Goods);
+                if($goodModle->create() ){
+                   $result = $goodModle->save();
+                   if( $result){
+                       $this->success("修改成功",U("showList"));
+                   }else{
+                       $this->error("修改失败",U("showList"));
+                   }
+                }
+
+            // 对数据进行修改
+        }else if( !empty(I("get.goods_id"))){
+            $goodModle = D(Goods);
+            $oneGood = $goodModle->find( I("get.goods_id") );
+            $this->good = $oneGood;
+            $this->display();
+        }
+
+
+
+
 
     }
 }
