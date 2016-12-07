@@ -6,6 +6,8 @@ return array(
         '__JS__' =>  '/Public/Admin/js' ,   //  更改默认的 __css__ 替换规则
         '__IMAGES__' => "/Public/Admin/img",
         '__UEDITOR__'=>  "/Plugin/ueditor",
+        '__UserImage_LOGO__'=>  "/UserImage/Logo",
+        '__UserImage_PRIC__'=>  "/UserImage/pric",
     ),
     'DB_TYPE'               =>  'mysql',     // 数据库类型
     'DB_HOST'               =>  'localhost', // 服务器地址

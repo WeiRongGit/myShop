@@ -6,6 +6,30 @@
  * Time: 22:31
  */
 
+
+
+
+
+
+
+
+function deletePoint($url){
+    return substr($url,1);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function fanXSS($string)
 
 {
