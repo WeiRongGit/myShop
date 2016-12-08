@@ -10,7 +10,27 @@ namespace Model;
 use Think\Image;
 use Think\Model;
 use Think\Upload;
+/*
+ * goods_id
+goods_name
+goods_price
+goods_shop_price
+goods_number
+goods_weight
+cat_id
+brand_id
+goods_big_logo
+goods_small_logo
+goods_introduce
+is_sale
+is_rec
+is_hot
+is_new
+add_time
+upd_time
+is_del
 
+ */
 class GoodsModel extends Model
 {
     // 插入数据前的回调方法
@@ -52,8 +72,6 @@ class GoodsModel extends Model
 //            }
 //        }
 //        if ($flag === true) {
-
-
             $config = array(
                 'rootPath' => "./UserImage/pric/", //保存根路径
             );
@@ -80,10 +98,51 @@ class GoodsModel extends Model
                     "pics_small" => $small_path_name,
                 );
                 $model->add($parm);
-
             }
         }
 //    }
+
+    // 更新数据前的回调方法
+    protected function _before_update(&$data,$options) {
+
+
+        if( $_FILES['goods_logo_upd']['error'] === 0 ){
+            $goodId = I("post.goods_id");
+            $oneGood = $this->find($goodId);
+            //删除来源的图片
+            if( !empty( $oneGood['goods_big_logo'])){
+
+                unlink($oneGood['goods_big_logo']);
+                unlink($oneGood['goods_small_logo']);
+            }
+
+
+
+
+            $config = array(
+                'rootPath'      =>  "./UserImage/Logo/", //保存根路径
+            );
+            $upload = new upload($config);
+
+
+            $result =   $upload->uploadOne( $_FILES['goods_logo_upd'] );
+            $big_path_name = $upload->rootPath.$result['savepath'].$result['savename'];
+
+            $data['goods_big_logo'] = $big_path_name;
+
+            //生成压缩图片
+            $image = new Image();
+            $image -> open($big_path_name);
+            $image ->thumb(60,60);
+            $small_path_name = $upload->rootPath.$result['savepath']."small_".$result['savename'];
+            $image ->save($small_path_name);
+
+            $data['goods_small_logo'] = $small_path_name;
+
+        }
+    }
+    // 更新成功后的回调方法
+    protected function _after_update($data,$options) {}
 
 
 

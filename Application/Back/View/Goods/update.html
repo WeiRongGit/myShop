@@ -109,11 +109,13 @@
                 <td><input type="text" name="goods_price"  value="{$good.goods_price}"/></td>
             </tr>                    <tr>
             <td>商品logo图片</td>
-            <td><input type="file" name="goods_logo_upd" />
-                <notempty name='info["goods_big_logo"]'>
-                    <img src='{$v.goods_big_logo|deletePoint}' width='200' height='200' alt=''/>
+            <td>
+                <notempty name='good["goods_big_logo"]'>
+                    <img src='{$good.goods_big_logo|deletePoint}' width='200' height='200' alt=''/>
                     <span>如果选择上传新的logo图片，则会自动覆盖旧图片</span>
+                    <br/>
                 </notempty>
+                <input type="file" name="goods_logo_upd" />
 
             </td>
         </tr>

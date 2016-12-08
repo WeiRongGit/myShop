@@ -60,7 +60,7 @@ class GoodsController extends Controller
 
         //点击进来加载资料
         if (!empty( I( "post.goods_id" ) )){
-            $goodModle = D(Goods);
+            $goodModle = new Model\GoodsModel();
                 if($goodModle->create() ){
                    $result = $goodModle->save();
                    if( $result){
