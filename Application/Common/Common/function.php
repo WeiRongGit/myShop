@@ -7,12 +7,13 @@
  */
 
 
-
-
-
-
-
-
+/**
+ * 为了删除图片路径中的第一个点. for example ./abc/bac  return /abc/bac
+ * @param $url
+ * @return string
+ *
+ *
+ */
 function deletePoint($url){
     return substr($url,1);
 }
