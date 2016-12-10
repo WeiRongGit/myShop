@@ -74,6 +74,12 @@ class GoodsController extends Controller
         }else if( !empty(I("get.goods_id"))){
             $goodModle = D(Goods);
             $oneGood = $goodModle->find( I("get.goods_id") );
+
+            $goodPric = D("goods_pics");
+            $condition = array("goods_id" => I("get.goods_id"));
+            $pic = $goodPric->select($condition);
+            var_dump($pic);
+            exit();
             $this->good = $oneGood;
             $this->display();
         }

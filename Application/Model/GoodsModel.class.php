@@ -110,8 +110,7 @@ class GoodsModel extends Model
             $goodId = I("post.goods_id");
             $oneGood = $this->find($goodId);
             //删除来源的图片
-            if( !empty( $oneGood['goods_big_logo'])){
-
+            if( !empty( $oneGood['goods_big_logo']) || !empty( $oneGood['goods_small_logo'])){
                 unlink($oneGood['goods_big_logo']);
                 unlink($oneGood['goods_small_logo']);
             }
