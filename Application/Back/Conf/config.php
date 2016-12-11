@@ -5,9 +5,12 @@ return array(
         '__CSS__' =>  '/Public/Admin/style' ,   //  更改默认的 __css__ 替换规则
         '__JS__' =>  '/Public/Admin/js' ,   //  更改默认的 __css__ 替换规则
         '__IMAGES__' => "/Public/Admin/img",
+
         '__UEDITOR__'=>  "/Plugin/ueditor",
-        '__UserImage_LOGO__'=>  "/UserImage/Logo",
+        '__UPLOAD_PREVIEW__'=>  "/Plugin/uploadPreview",
+
         '__UserImage_PRIC__'=>  "/UserImage/pric",
+        '__UserImage_LOGO__'=>  "/UserImage/Logo",
     ),
     'DB_TYPE'               =>  'mysql',     // 数据库类型
     'DB_HOST'               =>  'localhost', // 服务器地址

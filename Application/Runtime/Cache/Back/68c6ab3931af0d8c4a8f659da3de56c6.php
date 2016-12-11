@@ -5,58 +5,53 @@
     <meta http-equiv="content-type" content="text/html;charset=utf-8">
     <link href="/Public/Admin/style/mine.css" type="text/css" rel="stylesheet"/>
     <script type="text/javascript" charset="utf-8" src="/Plugin/ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" src="/Public/Admin/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/Plugin/uploadPreview/uploadPreview.min.js"></script>
+    <script>
 
-    <script type='text/javascript'>
-    UEDITOR_CONFIG.toolbars = [[
-    'fullscreen', 'source', '|', 'undo', 'redo', '|',
-    'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', '|',
-    'rowspacingtop', 'rowspacingbottom', 'lineheight', '|',
-    'customstyle', 'paragraph', 'fontfamily', 'fontsize', '|',
-    'directionalityltr', 'directionalityrtl', 'indent', '|',
-    'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', 'touppercase', 'tolowercase', '|',
-    'link', 'unlink', 'anchor', '|', 'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',
-    'simpleupload', 'insertimage', 'emotion', 'scrawl', 'insertvideo', 'music', 'attachment', 'map', 'gmap', 'insertframe', 'insertcode', 'webapp', 'pagebreak', 'template', 'background', '|',
-    'horizontal', 'date', 'time', 'spechars', 'snapscreen', 'wordimage', '|',
-    'inserttable', 'deletetable', 'insertparagraphbeforetable', '|',
-    ]];
+        $(function () {
+            new uploadPreview({UpBtn: "logoUpd", DivShow: "logodiv", ImgShow: "logoShow"});
+
+        });
+
+        UEDITOR_CONFIG.toolbars = [[
+            'fullscreen', 'source', '|', 'undo', 'redo', '|',
+            'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', '|',
+            'rowspacingtop', 'rowspacingbottom', 'lineheight', '|',
+            'customstyle', 'paragraph', 'fontfamily', 'fontsize', '|',
+            'directionalityltr', 'directionalityrtl', 'indent', '|',
+            'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', 'touppercase', 'tolowercase', '|',
+            'link', 'unlink', 'anchor', '|', 'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',
+            'simpleupload', 'insertimage', 'emotion', 'scrawl', 'insertvideo', 'music', 'attachment', 'map', 'gmap', 'insertframe', 'insertcode', 'webapp', 'pagebreak', 'template', 'background', '|',
+            'horizontal', 'date', 'time', 'spechars', 'snapscreen', 'wordimage', '|',
+            'inserttable', 'deletetable', 'insertparagraphbeforetable', '|',
+        ]];
 
     </script>
 
     <script type="text/javascript" charset="utf-8" src="/Plugin/ueditor/ueditor.all.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="/Plugin/ueditor/lang/zh-cn/zh-cn.js"></script>
 
-    <script type="text/javascript" src="/Public/Admin/js/jquery-1.11.3.min.js"></script>
+
     <script type="text/javascript">
         function del_pics(pics_id) {
             //通过ajax进行下一步操作，触发服务器端unlink删除物理图片
             $.post("/index.php/Back/Goods/delPics",
                 {
-                    pics_id:pics_id,
+                    pics_id: pics_id,
                 },
-                function(data,status){
-                if(data){
-                    $('#pics_'+pics_id).remove();
-                }
+                function (data, status) {
+                    if (data) {
+                        $('#pics_' + pics_id).remove();
+                    }
                 });
-
-
-            //                        $.post(
-            //                            "/index.php/Back/Goods/delPics",
-            //                            {"pics_id": pics_id},
-            //                            function (msg) {
-            //                                alert(msg);
-            //                                //删除页面上相关的相册节点
-            ////                                $('#pics_'+pics_id).remove();
-            //                            },
-            //                            "json"
-            //                        );
         }
     </script>
 </head>
 <body>
 <div class="div_head">
     <span>
-                <span style="float:left">当前位置是：商品管理-》添加商品信息</span>
+                <span style="float:left">当前位置是：商品管理-》修改</span>
                 <span style="float:right;margin-right: 8px;font-weight: bold">
                     <a style="text-decoration: none" href="<?php echo U('showlist');?>">【返回】</a>
                 </span>
@@ -64,54 +59,54 @@
 </div>
 <div></div>
 <script type="text/javascript">
-//加载事件里边定义click事件
-$(function () {
-$('#tabbar-div span').click(function () {
-$('#tabbar-div span').attr('class', 'tab-back');//全部标签 变暗
-$(this).attr('class', 'tab-front');//当前被点击标签 高亮
+    //加载事件里边定义click事件
+    $(function () {
+        $('#tabbar-div span').click(function () {
+            $('#tabbar-div span').attr('class', 'tab-back');//全部标签 变暗
+            $(this).attr('class', 'tab-front');//当前被点击标签 高亮
 
-$('.table_a').hide();//全部table 变暗
-var idflag = $(this).attr('id');//当前被点击标签对应的table 高亮
-$('#' + idflag + "-tb").show();
-});
-});
+            $('.table_a').hide();//全部table 变暗
+            var idflag = $(this).attr('id');//当前被点击标签对应的table 高亮
+            $('#' + idflag + "-tb").show();
+        });
+    });
 </script>
 <style type="text/css">
-      #tabbar-div {
-      background: none repeat scroll 0 0 #80BDCB;
-      height: 27px;
-      padding-left: 10px;
-      padding-top: 1px;
+    #tabbar-div {
+        background: none repeat scroll 0 0 #80BDCB;
+        height: 27px;
+        padding-left: 10px;
+        padding-top: 1px;
     }
 
-      #tabbar-div p {
-      margin: 2px 0 0;
+    #tabbar-div p {
+        margin: 2px 0 0;
     }
 
-      .tab-front {
-      background: none repeat scroll 0 0 #BBDDE5;
-      border-right: 2px solid #278296;
-      cursor: pointer;
-      font-weight: bold;
-      line-height: 20px;
-      padding: 4px 15px 4px 18px;
+    .tab-front {
+        background: none repeat scroll 0 0 #BBDDE5;
+        border-right: 2px solid #278296;
+        cursor: pointer;
+        font-weight: bold;
+        line-height: 20px;
+        padding: 4px 15px 4px 18px;
     }
 
-      .tab-back {
-      border-right: 1px solid #FFFFFF;
-      color: #FFFFFF;
-      cursor: pointer;
-      line-height: 20px;
-      padding: 4px 15px 4px 18px;
+    .tab-back {
+        border-right: 1px solid #FFFFFF;
+        color: #FFFFFF;
+        cursor: pointer;
+        line-height: 20px;
+        padding: 4px 15px 4px 18px;
     }
 
-      .tab-hover {
-      background: none repeat scroll 0 0 #94C9D3;
-      border-right: 1px solid #FFFFFF;
-      color: #FFFFFF;
-      cursor: pointer;
-      line-height: 20px;
-      padding: 4px 15px 4px 18px;
+    .tab-hover {
+        background: none repeat scroll 0 0 #94C9D3;
+        border-right: 1px solid #FFFFFF;
+        color: #FFFFFF;
+        cursor: pointer;
+        line-height: 20px;
+        padding: 4px 15px 4px 18px;
     }
 </style>
 <div id="tabbar-div">
@@ -141,16 +136,18 @@ $('#' + idflag + "-tb").show();
             <tr>
                 <td>商品logo图片</td>
                 <td>
-                    <?php if(!empty($good["goods_big_logo"])): ?><img src='<?php echo (deletePoint($good["goods_big_logo"])); ?>' width='200' height='200' alt=''/>
-                        <span>如果选择上传新的logo图片，则会自动覆盖旧图片</span>
-                        <br/><?php endif; ?>
-                    <input type="file" name="goods_logo_upd"/>
-
+                    <div id="logodiv">
+                        <?php if(!empty($good["goods_big_logo"])): ?><img src='<?php echo (deletePoint($good["goods_big_logo"])); ?>' width='200' height='200' alt=''
+                                 id="logoShow"/>
+                            <span>如果选择上传新的logo图片，则会自动覆盖旧图片</span>
+                            <br/><?php endif; ?>
+                        <input type="file" name="goods_logo_upd" id="logoUpd"/>
+                    </div>
                 </td>
             </tr>
         </table>
         <table border="1" width="100%" class="table_a" id="detail-tab-tb"
-        style="display:none;"
+               style="display:none;"
         >
             <tr>
                 <td>商品详细描述</td>
@@ -159,11 +156,11 @@ $('#' + idflag + "-tb").show();
                 </td>
             </tr>
             <script type='text/javascript'>
-            var ue = UE.getEditor('goods_introduce');
+                var ue = UE.getEditor('goods_introduce');
             </script>
         </table>
         <table border="1" width="100%" class="table_a" id="mix-tab-tb"
-        style="display:none;"
+               style="display:none;"
         >
             <tr>
                 <td>商品重量</td>
@@ -171,7 +168,7 @@ $('#' + idflag + "-tb").show();
             </tr>
         </table>
         <table border="1" width="100%" class="table_a" id="properties-tab-tb"
-        style="display:none;"
+               style="display:none;"
         >
             <tr>
                 <td>商品相关属性</td>
@@ -179,21 +176,29 @@ $('#' + idflag + "-tb").show();
             </tr>
         </table>
         <script type="text/javascript">
-        function add_item() {
-        //增加相册的项目
-        var s = "<tr><td><span style='cursor:pointer;' onclick='$(this).parent().parent().remove()'>[-]</span>商品相册</td><td><input type='file' name='goods_pics_upd[]' /></td></tr>";
-        $('#gallery-tab-tb').append(s);
-        }
+
+            var number = 1;
+
+
+            function add_item() {
+
+                //增加相册的项目
+                var s = "<tr><td><span style='cursor:pointer;' onclick='$(this).parent().parent().remove()'>[-]</span>商品相册</td><td>  <div id='div_pics_"+number+"'> <input type='file' name='goods_pics_upd[]' id='up_btn_"+number+"' /> <img id='img_pics_"+number+"' width='100' height='100'/> </div></td></tr>";
+                $('#gallery-tab-tb').append(s);
+                new uploadPreview({UpBtn: "up_btn_"+number, DivShow: "div_pics_"+number, ImgShow: "img_pics_"+number});
+
+                number++;
+            }
         </script>
         <table border="1" width="100%" class="table_a" id="gallery-tab-tb"
-        style="display:none;">
+               style="display:none;">
 
             <?php if(!empty($picsinfo)): ?><style type='text/css'>li {
-                  float: left;
+                    float: left;
                 }
 
-                  li {
-                  list-style: none;
+                li {
+                    list-style: none;
                 }
                 </style>
                 <tr>
@@ -210,7 +215,20 @@ $('#' + idflag + "-tb").show();
 
             <tr>
                 <td><span style='cursor:pointer;' onclick="add_item()">[+]</span>商品相册</td>
-                <td><input type='file' name='goods_pics_upd[]'/></td>
+                <td>
+                    <div id="div_pics_0">
+                        <input type='file' name='goods_pics_upd[]' id="up_btn_0"/>
+                        <img id="img_pics_0" width="100" height="100"/>
+                    </div>
+                </td>
+
+
+                <script type="text/javascript">
+                    $(function () {
+                        new uploadPreview({UpBtn: "up_btn_0", DivShow: "div_pics_0", ImgShow: "img_pics_0"});
+
+                    });
+                </script>
             </tr>
 
         </table>

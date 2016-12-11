@@ -11,6 +11,15 @@
         <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
         <script type="text/javascript" charset="utf-8" src="__UEDITOR__/lang/zh-cn/zh-cn.js"></script>
         <script type="text/javascript" src="__JS__/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" charset="utf-8" src="__UPLOAD_PREVIEW__/uploadPreview.min.js"></script>
+
+        <script>
+            window.onload = function () {
+                new uploadPreview({ UpBtn: "up_img", DivShow: "imgdiv", ImgShow: "imgShow" });
+            };
+        </script>
+
+
         <script type="text/javascript">
             //加载事件里边定义click事件
             $(function(){
@@ -96,7 +105,8 @@
                         <td><input type="text" name="goods_price" /></td>
                     </tr>                    <tr>
                     <td>商品logo图片</td>
-                    <td><input type="file" name="goods_logo" /></td>
+                    <td>
+                     <div id="imgdiv"><input type="file" name="goods_logo"  id="up_img" /><img id="imgShow" width="100" height="100" /></div></td>
                 </tr>
                 </table>
                 <table border="1" width="100%" class="table_a" id="detail-tab-tb"

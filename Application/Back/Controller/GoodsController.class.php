@@ -42,7 +42,7 @@ class GoodsController extends Controller
             $goodData['goods_introduce'] = fanXSS($_POST['goods_introduce']);
 
             $result = $model->add($goodData);
-            if ($result) {
+            if ($result ) {
                 $this->success("插入成功", U("showList"));
             } else {
                 $this->error("插入失败啦", U("showList"));
@@ -65,17 +65,36 @@ class GoodsController extends Controller
 
         // 对数据进行修改
         if (!empty(I("post.goods_id"))) {
+
+            //即使上传了图片,如果没有做其他的改动,修改会显示不成功
+
+            //判断图片是否上传公成功,如果上传成功,假设已经写入到磁盘了.就给出输出信息
+            $flag = false;
+            foreach ($_FILES['goods_pics_upd']['error'] as $a => $b) {
+                if ($b === 0) {
+                    $flag = true;
+                    break;
+                }
+            }
+
             $goodModle = new Model\GoodsModel();
             if ($goodModle->create()) {
                 $result = $goodModle->save();
                 if ($result) {
                     $this->success("修改成功", U("showList"));
                 } else {
-                    $this->error("修改失败", U("showList"));
+                    if($flag){
+                        $this->success("图片上传成功", U("showList"));
+                    }else{
+                        $this->error("修改失败", U("showList"));
+                    }
                 }
             }
             //点击进来加载资料到模版
         } else if (!empty(I("get.goods_id"))) {
+
+
+
             $goodModle = D(Goods);
             $oneGood = $goodModle->find(I("get.goods_id"));
 
