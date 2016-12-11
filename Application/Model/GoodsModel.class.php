@@ -139,6 +139,8 @@ class GoodsModel extends Model
             $data['goods_small_logo'] = $small_path_name;
 
         }
+
+
     }
     // 更新成功后的回调方法
     protected function _after_update($data,$options) {}

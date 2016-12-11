@@ -81,7 +81,7 @@ class GoodsController extends Controller
 
             $goodPric = D("goods_pics");
             $condition = array("goods_id" => I("get.goods_id"));
-            $pic = $goodPric->select($condition);
+            $pic = $goodPric->where($condition)->select();
 
             $this->picsinfo = $pic;
             $this->good = $oneGood;
